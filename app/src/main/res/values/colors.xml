@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
+    <color name="overlay_black_25">#40000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="translucent_white_25">#40FFFFFF</color>
+    <color name="english_violet">#2C0735</color>
+    <color name="medium_slate_blue">#858AE3</color>
+    <color name="royal_purple">#613DC1</color>
+    <color name="america_violet">#4E148C</color>
+    <color name="colombia_blue">#97DFFC</color>
+    <color name="royal_purple_50">#80613DC1</color>
+    <color name="america_violet_50">#804E148C</color>
+    <color name="veronica_50">#80480CA8</color>
+    <color name="veronica">#480CA8</color>
+    <color name="Byzantium">#7209b7</color>
+    <color name="Fandango">#f72585</color>
+    <color name="Fandango_25">#40F72585</color>
+    <color name="Fandango_50">#80F72585</color>
+    <color name="pastel_pink">#ffc2e2</color>
+    <color name="pastel_pink_25">#40FFC2E2</color>
+    <color name="pastel_pink_50">#80FFC2E2</color>
+    <color name="Rose_Pink">#fb74b4</color>
+    <color name="Rose_Pink_25">#40FB74B4</color>
+    <color name="Rose_Pink_50">#80FB74B4</color>
+    <color name="Mauve">#e0aaff</color>
 </resources>
