@@ -45,7 +45,7 @@
             android:layout_marginEnd="8dp"
             android:background="@drawable/custom_input"
             android:drawableEnd="@drawable/outline_analytics_24"
-            android:text="Analysis"
+            android:text="Add Category"
             app:layout_constraintEnd_toStartOf="@+id/btnReporter"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -57,7 +57,7 @@
             android:layout_marginStart="8dp"
             android:background="@drawable/custom_input"
             android:drawableEnd="@drawable/outline_calculate_24"
-            android:text="Reporter"
+            android:text="Add Budget"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btnAnalysis"
             app:layout_constraintTop_toTopOf="@+id/btnAnalysis" />
@@ -68,8 +68,8 @@
             android:layout_height="90dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/custom_input"
-            android:text="Current balance: "
-            android:textAlignment="viewStart"
+            android:text="Add Expense"
+            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnAnalysis" />

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".CreateCategory">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/racing_sans_one"
+        android:gravity="top"
+        android:text="Add Expense/Income"
+        android:textAlignment="center"
+        android:textColor="@color/pastel_pink"
+        android:textSize="48sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/racing_sans_one"
+        android:gravity="top"
+        android:text="Choose type of expense"
+        android:textAlignment="center"
+        android:textColor="@color/pastel_pink"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp">
+        <RadioButton
+            android:id="@+id/rbCategory"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Expense"
+            android:fontFamily="@font/racing_sans_one"
+            android:textAlignment="center"
+            android:textColor="@color/pastel_pink"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+        <RadioButton
+            android:id="@+id/rbExpense"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Income"
+            android:fontFamily="@font/racing_sans_one"
+            android:textAlignment="center"
+            android:textColor="@color/pastel_pink"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+    </RadioGroup>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/racing_sans_one"
+        android:gravity="top"
+        android:text="Choose expense category"
+        android:textAlignment="center"
+        android:textColor="@color/pastel_pink"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+    <EditText
+        android:id="@+id/etCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:layout_marginEnd="55dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/custom_input"
+        android:backgroundTint="@color/Fandango_50"
+        android:ems="10"
+        android:hint="Category Name"
+        android:fontFamily="@font/racing_sans_one"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textColorHint="@color/pastel_pink"
+        android:textColor="@color/pastel_pink"
+        android:textSize="24sp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/racing_sans_one"
+        android:gravity="top"
+        android:text="Enter expense name"
+        android:textAlignment="center"
+        android:textColor="@color/pastel_pink"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:layout_marginEnd="55dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/custom_input"
+        android:backgroundTint="@color/Fandango_50"
+        android:ems="10"
+        android:hint="Expense Name"
+        android:fontFamily="@font/racing_sans_one"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textColorHint="@color/pastel_pink"
+        android:textColor="@color/pastel_pink"
+        android:textSize="24sp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/racing_sans_one"
+        android:gravity="top"
+        android:text="Add Picture (Optional)"
+        android:textAlignment="center"
+        android:textColor="@color/pastel_pink"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+    <Button
+        android:id="@+id/btnAddPicture"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="110dp"
+        android:layout_marginEnd="110dp"
+        android:background="@drawable/custom_button_2"
+        android:text="Select Picture"
+        android:fontFamily="@font/racing_sans_one"
+        android:textColor="@color/pastel_pink"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="20dp"/>
+
+    <Button
+        android:id="@+id/btnCreateExpense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:layout_marginEnd="55dp"
+        android:background="@drawable/custom_button_2"
+        android:text="Create Expense"
+        android:fontFamily="@font/racing_sans_one"
+        android:textColor="@color/pastel_pink"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="20dp"/>
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="110dp"
+        android:layout_marginEnd="110dp"
+        android:background="@drawable/custom_button_2"
+        android:text="Back"
+        android:fontFamily="@font/racing_sans_one"
+        android:textColor="@color/pastel_pink"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginTop="40dp"/>
+
+</LinearLayout>

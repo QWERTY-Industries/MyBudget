@@ -10,8 +10,11 @@
 
     <EditText
         android:id="@+id/etUserfirstValue"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="47dp"
+        android:layout_marginEnd="122dp"
+        android:layout_marginBottom="44dp"
         android:background="@drawable/custom_input"
         android:backgroundTint="@color/pastel_pink_50"
         android:ems="10"
@@ -19,13 +22,16 @@
         android:inputType="text"
         android:textAlignment="center"
         android:textColorHint="@color/pastel_pink"
-        tools:layout_editor_absoluteX="47dp"
-        tools:layout_editor_absoluteY="136dp" />
+        app:layout_constraintBottom_toTopOf="@+id/editTextText"
+        app:layout_constraintEnd_toStartOf="@+id/etUserSecondValue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCategoryContainer" />
 
     <EditText
         android:id="@+id/etUserSecondValue"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="42dp"
         android:background="@drawable/custom_input"
         android:backgroundTint="@color/pastel_pink_50"
         android:ems="10"
@@ -33,111 +39,155 @@
         android:inputType="text"
         android:textAlignment="center"
         android:textColorHint="@color/pastel_pink"
-        tools:layout_editor_absoluteX="269dp"
-        tools:layout_editor_absoluteY="136dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/etUserfirstValue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/etUserfirstValue"
+        app:layout_constraintTop_toTopOf="@+id/etUserfirstValue" />
 
     <EditText
         android:id="@+id/editTextText"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginEnd="55dp"
+        android:layout_marginBottom="60dp"
         android:background="@drawable/custom_input"
+        android:backgroundTint="@color/Fandango_50"
         android:ems="10"
         android:hint="@string/answer"
         android:inputType="text"
         android:textAlignment="center"
         android:textColorHint="@color/pastel_pink"
-        android:backgroundTint="@color/Fandango_50"
-        tools:layout_editor_absoluteX="55dp"
-        tools:layout_editor_absoluteY="230dp" />
+        app:layout_constraintBottom_toTopOf="@+id/btnAddition"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etUserfirstValue" />
 
     <Button
         android:id="@+id/btnSubtraction"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="89dp"
+        android:layout_marginBottom="27dp"
         android:background="@drawable/custom_button"
         android:text="@string/subtraction"
-        tools:layout_editor_absoluteX="180dp"
-        tools:layout_editor_absoluteY="340dp" />
+        app:layout_constraintBottom_toTopOf="@+id/btnDivision"
+        app:layout_constraintEnd_toStartOf="@+id/btnMultiplication"
+        app:layout_constraintStart_toEndOf="@+id/btnAddition"
+        app:layout_constraintTop_toBottomOf="@+id/btnAddition" />
 
     <Button
         android:id="@+id/btnAddition"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="47dp"
+        android:layout_marginEnd="83dp"
         android:background="@drawable/custom_button"
         android:text="@string/addition"
-        tools:layout_editor_absoluteX="47dp"
-        tools:layout_editor_absoluteY="340dp" />
+        app:layout_constraintBottom_toTopOf="@+id/btnSubtraction"
+        app:layout_constraintEnd_toStartOf="@+id/btnSubtraction"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
 
     <Button
         android:id="@id/btnBack"
         android:layout_width="73dp"
-        android:layout_height="44dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="35dp"
         android:background="@drawable/custom_button_2"
         android:text="@string/back"
-        tools:layout_editor_absoluteX="322dp"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintBottom_toTopOf="@+id/spinnerCategoryContainer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnLessThan"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="42dp"
         android:background="@drawable/custom_button"
         android:text="@string/less_than"
-        tools:layout_editor_absoluteX="319dp"
-        tools:layout_editor_absoluteY="417dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/btnGreaterThan"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnGreaterThan"
+        app:layout_constraintTop_toTopOf="@+id/btnGreaterThan" />
 
     <Button
         android:id="@+id/btnDivision"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="47dp"
+        android:layout_marginEnd="83dp"
         android:background="@drawable/custom_button"
         android:text="@string/Division"
-        tools:layout_editor_absoluteX="47dp"
-        tools:layout_editor_absoluteY="417dp" />
+        app:layout_constraintBottom_toTopOf="@+id/btnGreaterThan"
+        app:layout_constraintEnd_toStartOf="@+id/btnGreaterThan"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSubtraction" />
 
     <Button
         android:id="@+id/btnGreaterThan"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="89dp"
+        android:layout_marginBottom="34dp"
         android:background="@drawable/custom_button"
         android:text="@string/greater_than"
-        tools:layout_editor_absoluteX="180dp"
-        tools:layout_editor_absoluteY="417dp" />
+        app:layout_constraintBottom_toTopOf="@+id/equalTo"
+        app:layout_constraintEnd_toStartOf="@+id/btnLessThan"
+        app:layout_constraintStart_toEndOf="@+id/btnDivision"
+        app:layout_constraintTop_toBottomOf="@+id/btnDivision" />
 
     <Button
         android:id="@+id/equalTo"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="43dp"
         android:background="@drawable/custom_button"
         android:text="@string/equalTo"
-        tools:layout_editor_absoluteX="180dp"
-        tools:layout_editor_absoluteY="501dp" />
+        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintEnd_toEndOf="@+id/btnGreaterThan"
+        app:layout_constraintStart_toStartOf="@+id/btnGreaterThan"
+        app:layout_constraintTop_toBottomOf="@+id/btnGreaterThan" />
 
     <Button
         android:id="@+id/btnMultiplication"
-        android:layout_width="50dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
+        android:layout_marginEnd="42dp"
         android:background="@drawable/custom_button"
         android:text="@string/mutiplication"
-        tools:layout_editor_absoluteX="319dp"
-        tools:layout_editor_absoluteY="340dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnSubtraction"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/spinnerCategoryContainer"
-        android:layout_width="409dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="17dp"
         android:backgroundTint="@color/pastel_pink"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="95dp" />
+        app:layout_constraintBottom_toTopOf="@+id/etUserfirstValue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnBack" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="250dp"
-        android:layout_height="50dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="87dp"
         android:background="@drawable/custom_button_2"
         android:text="Update information"
-        tools:layout_editor_absoluteX="80dp"
-        tools:layout_editor_absoluteY="594dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/equalTo" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

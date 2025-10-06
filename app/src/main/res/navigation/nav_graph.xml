@@ -24,6 +24,15 @@
         <action
             android:id="@+id/action_homeFrag2_to_reportsFrag"
             app:destination="@id/reportsFrag" />
+        <action
+            android:id="@+id/action_homeFrag_to_createCategory"
+            app:destination="@id/CreateCategory" />
+        <action
+            android:id="@+id/action_homeFrag_to_createExpense"
+            app:destination="@id/CreateExpense" />
+        <action
+            android:id="@+id/action_homeFrag_to_createBudget"
+            app:destination="@id/CreateBudget" />
     </fragment>
     <fragment
         android:id="@+id/analysisFrag2"
@@ -50,4 +59,31 @@
         android:name="qi.mybudget.WalletFrag"
         android:label="fragment_wallet"
         tools:layout="@layout/fragment_wallet" />
+    <fragment
+        android:id="@+id/CreateCategory"
+        android:name="qi.mybudget.CreateCategory"
+        android:label="fragment_create_category"
+        tools:layout="@layout/fragment_create_category">
+        <action
+            android:id="@+id/action_createCategory_to_homeFrag"
+            app:destination="@id/homeFrag2" />
+    </fragment>
+    <fragment
+        android:id="@+id/CreateExpense"
+        android:name="qi.mybudget.CreateExpense"
+        android:label="fragment_create_expense"
+        tools:layout="@layout/fragment_create_expense">
+        <action
+            android:id="@+id/action_createExpense_to_homeFrag"
+            app:destination="@id/homeFrag2" />
+    </fragment>
+    <fragment
+        android:id="@+id/CreateBudget"
+        android:name="qi.mybudget.CreateBudget"
+        android:label="fragment_create_budget"
+        tools:layout="@layout/fragment_create_budget">
+        <action
+            android:id="@+id/action_createBudget_to_homeFrag"
+            app:destination="@id/homeFrag2" />
+    </fragment>
 </navigation>

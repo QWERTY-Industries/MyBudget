@@ -6,6 +6,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import qi.mybudget.databinding.ActivityHomeScreenBinding
 import android.graphics.drawable.AnimationDrawable
+import qi.mybudget.databinding.ActivitySignUpscreenBinding
 
 class HomeScreen : AppCompatActivity() {
 
@@ -13,6 +14,8 @@ class HomeScreen : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val id = this.intent.getIntExtra("UserId", 0)
+
         binding = ActivityHomeScreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -29,7 +32,7 @@ class HomeScreen : AppCompatActivity() {
 
         // Add functionality to the Floating Action Button
         binding.fab.setOnClickListener {
-            navController.navigate(R.id.action_homeFrag2_to_walletFrag)
+            navController.navigate(R.id.action_homeFrag_to_createExpense)
         }
     }
 }
