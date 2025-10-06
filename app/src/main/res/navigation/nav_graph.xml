@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFrag2">
+    <fragment
+        android:id="@+id/homeFrag2"
+        android:name="qi.mybudget.HomeFrag"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFrag2_to_overviewFrag"
+            app:destination="@id/overviewFrag" />
+        <action
+            android:id="@+id/action_homeFrag2_to_analysisFrag2"
+            app:destination="@id/analysisFrag2" />
+        <action
+            android:id="@+id/action_homeFrag2_to_reporterFrag"
+            app:destination="@id/reporterFrag" />
+        <action
+            android:id="@+id/action_homeFrag2_to_walletFrag"
+            app:destination="@id/walletFrag" />
+        <action
+            android:id="@+id/action_homeFrag2_to_reportsFrag"
+            app:destination="@id/reportsFrag" />
+    </fragment>
+    <fragment
+        android:id="@+id/analysisFrag2"
+        android:name="qi.mybudget.AnalysisFrag"
+        android:label="fragment_analysis"
+        tools:layout="@layout/fragment_analysis" />
+    <fragment
+        android:id="@+id/overviewFrag"
+        android:name="qi.mybudget.OverviewFrag"
+        android:label="fragment_overview"
+        tools:layout="@layout/fragment_overview" />
+    <fragment
+        android:id="@+id/reporterFrag"
+        android:name="qi.mybudget.ReporterFrag"
+        android:label="fragment_reporter"
+        tools:layout="@layout/fragment_reporter" />
+    <fragment
+        android:id="@+id/reportsFrag"
+        android:name="qi.mybudget.ReportsFrag"
+        android:label="fragment_reports"
+        tools:layout="@layout/fragment_reports" />
+    <fragment
+        android:id="@+id/walletFrag"
+        android:name="qi.mybudget.WalletFrag"
+        android:label="fragment_wallet"
+        tools:layout="@layout/fragment_wallet" />
+</navigation>

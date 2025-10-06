@@ -1,3 +1,34 @@
 <resources>
     <string name="app_name">MyBudget</string>
+    <string name="login">Login</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="name">Name</string>
+    <string name="password">Password</string>
+    <string name="e_mail">E-mail</string>
+    <string name="username">Username</string>
+    <string name="last_name">Last Name</string>
+    <string name="first_name">First Name</string>
+    <string name="create_account">Create Account</string>
+    <string name="welcome_to_my_budget">Welcome to My Budget</string>
+    <string name="btnOverview">Current balance: R%1$.2f</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="your_current_balance_is">Your current balance is:</string>
+    <string name="you_spent">You Spent:</string>
+    <string name="your_income_this_month">Your income this month:</string>
+    <string name="back">Back</string>
+    <string name="overview">Overview</string>
+    <string name="wallet">Wallet</string>
+    <string name="answer">Answer</string>
+    <string name="subtraction">-</string>
+    <string name="addition">+</string>
+    <string name="less_than"><![CDATA[<]]></string>
+    <string name="Division">/</string>
+    <string name="greater_than"><![CDATA[>]]></string>
+    <string name="equalTo">=</string>
+    <string name="mutiplication">*</string>
+    <string name="total">Total:</string>
+    <string name="expenses">Expenses:</string>
+    <string name="income">Income:</string>
+    <string name="analysis">Analysis</string>
 </resources>
