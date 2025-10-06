@@ -6,12 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import qi.mybudget.databinding.FragmentHomeBinding // Import the binding class for the fragment
+import qi.mybudget.databinding.FragmentCreateBudgetBinding
+import qi.mybudget.databinding.FragmentCreateExpenseBinding
 
-class HomeFrag : Fragment() {
-
+class CreateBudget : Fragment() {
     // Declare binding variables
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentCreateBudgetBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -19,28 +19,32 @@ class HomeFrag : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout using View Binding
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentCreateBudgetBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Access buttons directly through the binding object (no more findViewById)
+        //Q Commented code is database not creating table and throw compile error
+
+//        val db = Room.databaseBuilder(
+//            requireContext().applicationContext,
+//            AppDatabase::class.java, "database-new"
+//        ).allowMainThreadQueries().build()
+//
+//        val budgetDao = db.budgetDao();
+//        val budgets: List<Budget> = budgetDao.findCategoriesByUserId();
+
+        //Q Create
+        binding.btnCreateBudget.setOnClickListener {
+            findNavController().navigate(R.id.action_createBudget_to_homeFrag)
+//            budgetDao.createBudget(Budget())
+        }
 
         //Q Category
-        binding.btnAnalysis.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFrag_to_createCategory)
-        }
-
-        //Q Budget
-        binding.btnReporter.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFrag_to_createBudget)
-        }
-
-        //Q Expense
-        binding.btnOverview.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFrag_to_createExpense)
+        binding.btnBack.setOnClickListener {
+            findNavController().navigate(R.id.action_createBudget_to_homeFrag)
         }
 
         // Note: Your "Side Menu" button with the id "button" is not yet used.

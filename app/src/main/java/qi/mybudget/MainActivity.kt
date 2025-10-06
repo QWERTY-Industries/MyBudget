@@ -1,7 +1,9 @@
 package qi.mybudget
 
+import android.content.Intent
 import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
+import android.os.Handler
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -39,5 +41,15 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        //Q Wait for splash screen
+        val handler: Handler = Handler()
+        handler.postDelayed(Runnable {
+            val intent: Intent = Intent(
+                this,
+                LoginScreen::class.java
+            )
+            startActivity(intent)
+        }, 3000)
     }
 }

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".CreateCategory">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/racing_sans_one"
+        android:gravity="top"
+        android:text="Add Category"
+        android:textAlignment="center"
+        android:textColor="@color/pastel_pink"
+        android:textSize="48sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/racing_sans_one"
+        android:gravity="top"
+        android:text="Enter category name"
+        android:textAlignment="center"
+        android:textColor="@color/pastel_pink"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:layout_marginEnd="55dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/custom_input"
+        android:backgroundTint="@color/Fandango_50"
+        android:ems="10"
+        android:hint="Category Name"
+        android:fontFamily="@font/racing_sans_one"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textColorHint="@color/pastel_pink"
+        android:textColor="@color/pastel_pink"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/btnCreateCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:layout_marginEnd="55dp"
+        android:background="@drawable/custom_button_2"
+        android:text="Create Category"
+        android:fontFamily="@font/racing_sans_one"
+        android:textColor="@color/pastel_pink"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="20dp"/>
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="110dp"
+        android:layout_marginEnd="110dp"
+        android:background="@drawable/custom_button_2"
+        android:text="Back"
+        android:fontFamily="@font/racing_sans_one"
+        android:textColor="@color/pastel_pink"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginTop="80dp"/>
+
+</LinearLayout>
