@@ -39,7 +39,6 @@ android {
     }
 }
 
-
 dependencies {
 
     implementation(libs.androidx.core.ktx)
@@ -52,13 +51,6 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    // Coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2") // Use the latest version
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2")
-
-    // Lifecycle (for lifecycleScope)
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2") // Use the latest version
-
     // Jetpack Navigation
     val nav_version = "2.7.7"
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
@@ -93,9 +85,4 @@ dependencies {
 
     // optional - Paging 3 Integration
     implementation("androidx.room:room-paging:$room_version")
-
-    //graphs
-    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
-
-
 }

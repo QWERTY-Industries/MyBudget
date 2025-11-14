@@ -2,7 +2,6 @@ package qi.mybudget
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.room.Room
 import qi.mybudget.databinding.ActivityLoginScreenBinding // Import the binding class
@@ -39,8 +38,7 @@ class LoginScreen : AppCompatActivity() {
                 if (binding.etUsername.text.toString() == user.username)
                 {
                     nameExists = true
-                    //id--
-                    break
+                    id--
                 }
 
                 id++
@@ -55,15 +53,11 @@ class LoginScreen : AppCompatActivity() {
 
                 // Start the HomeScreen activity
                 startActivity(intent)
-                finish()
-            }
-            else{
-                Toast.makeText(this, "Invalid Username or Password", Toast.LENGTH_SHORT).show()
             }
 
             // Optional: Call finish() to prevent the user from returning
             // to the login screen by pressing the back button.
-
+            finish()
         }
         binding.btnSignUp.setOnClickListener {
             // Create an Intent to go from this screen to the SignupScreen
