@@ -14,8 +14,8 @@
 
         <activity
             android:name=".HomeScreen"
-            android:exported="true">
-        </activity>
+            android:exported="false"/>
+
         <activity
             android:name=".SignUPScreen"
             android:exported="false" />
