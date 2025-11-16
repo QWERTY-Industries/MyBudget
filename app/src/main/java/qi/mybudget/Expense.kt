@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 data class Expense(
     @PrimaryKey val eid: Int,
     @ColumnInfo(name = "uid") val uid: Int,
-    @ColumnInfo(name = "cid") val cid: Category,
+    @ColumnInfo(name = "cid") val cid: Int,
     @ColumnInfo(name = "expense_name") val expenseName: String,
     @ColumnInfo(name = "expense_amount") val expenseAmount: Double?
 )
