@@ -29,28 +29,24 @@ class HomeScreen : AppCompatActivity() {
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
 
-        // 1. Connect the BottomNavigationView for automatic handling
+        // 1. Connect the BottomNavigationView
         binding.bottomNavigationView.setupWithNavController(navController)
 
         // 2. Manually handle clicks for the side NavigationView (Drawer)
         binding.navView.setNavigationItemSelectedListener { menuItem ->
-            // First, navigate to the correct destination based on the item's ID
             when (menuItem.itemId) {
                 R.id.nav_settings -> navController.navigate(R.id.settingsFrag)
                 R.id.nav_profile -> navController.navigate(R.id.accountScreenFrag)
                 R.id.nav_help -> navController.navigate(R.id.helpFragment)
                 R.id.nav_logout -> {
-                    // You can add your actual logout logic here
                     Toast.makeText(this, "Logout Clicked", Toast.LENGTH_SHORT).show()
                 }
             }
-            // After handling the click, close the drawer
             binding.drawerLayout.closeDrawers()
-            // Return true to signify the event was handled
             true
         }
 
-        // 3. Define top-level destinations (for the hamburger icon)
+        // 3. Define top-level destinations
         appBarConfiguration = AppBarConfiguration(
             setOf(R.id.homeFrag2, R.id.reporterFrag, R.id.analysisFrag),
             drawerLayout
@@ -59,14 +55,19 @@ class HomeScreen : AppCompatActivity() {
         // 4. Set up the Toolbar
         setSupportActionBar(binding.toolbar)
 
-        // 5. HIDE THE TITLE FROM THE TOOLBAR
+        // 5. Hide the title from the Toolbar
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
         // 6. Connect the Toolbar with the NavController
         setupActionBarWithNavController(navController, appBarConfiguration)
+
+        // --- NEW: SET UP THE FLOATING ACTION BUTTON ---
+        binding.fab.setOnClickListener {
+            // This is the ID of your destination in nav_graph.xml
+            navController.navigate(R.id.addTransactionFragment)
+        }
     }
 
-    // This method handles the 'Up' button (hamburger icon or back arrow)
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
