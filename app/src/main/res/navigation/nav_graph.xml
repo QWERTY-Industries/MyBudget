@@ -28,11 +28,20 @@
             android:id="@+id/action_homeFrag_to_createCategory"
             app:destination="@id/CreateCategory" />
         <action
-            android:id="@+id/action_homeFrag_to_createExpense"
-            app:destination="@id/CreateExpense" />
+            android:id="@+id/action_homeFrag2_to_addTransactionFragment"
+            app:destination="@id/addTransactionFragment" />
         <action
-            android:id="@+id/action_homeFrag_to_createBudget"
-            app:destination="@id/CreateBudget" />
+            android:id="@+id/action_homeFrag2_to_createBudgetFrag"
+            app:destination="@id/createBudgetFrag" />
+        <action
+            android:id="@+id/action_homeFrag2_to_settingsFrag"
+            app:destination="@id/settingsFrag" />
+        <action
+            android:id="@+id/action_homeFrag2_to_helpFragment"
+            app:destination="@id/helpFragment" />
+        <action
+            android:id="@+id/action_homeFrag2_to_accountScreenFrag"
+            app:destination="@id/accountScreenFrag" />
     </fragment>
     <fragment
         android:id="@+id/analysisFrag2"
@@ -69,21 +78,28 @@
             app:destination="@id/homeFrag2" />
     </fragment>
     <fragment
-        android:id="@+id/CreateExpense"
-        android:name="qi.mybudget.CreateExpense"
-        android:label="fragment_create_expense"
-        tools:layout="@layout/fragment_create_expense">
-        <action
-            android:id="@+id/action_createExpense_to_homeFrag"
-            app:destination="@id/homeFrag2" />
-    </fragment>
+        android:id="@+id/addTransactionFragment"
+        android:name="qi.mybudget.AddTransactionFragment"
+        android:label="fragment_add_transaction"
+        tools:layout="@layout/fragment_add_transaction" />
     <fragment
-        android:id="@+id/CreateBudget"
-        android:name="qi.mybudget.CreateBudget"
-        android:label="fragment_create_budget"
-        tools:layout="@layout/fragment_create_budget">
-        <action
-            android:id="@+id/action_createBudget_to_homeFrag"
-            app:destination="@id/homeFrag2" />
-    </fragment>
+        android:id="@+id/createBudgetFrag"
+        android:name="qi.mybudget.CreateBudgetFrag"
+        android:label="CreateBudgetFrag" />
+    <fragment
+        android:id="@+id/settingsFrag"
+        android:name="qi.mybudget.SettingsFrag"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/helpFragment"
+        android:name="qi.mybudget.HelpFragment"
+        android:label="fragment_help"
+        tools:layout="@layout/fragment_help" />
+    <fragment
+        android:id="@+id/accountScreenFrag"
+        android:name="qi.mybudget.AccountScreenFrag"
+        android:label="fragment_account_screen"
+        tools:layout="@layout/fragment_account_screen" />
+
 </navigation>

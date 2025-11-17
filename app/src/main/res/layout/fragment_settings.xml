@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    tools:context=".SettingsFrag">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="24dp">
+
+        <!-- Header -->
+        <TextView
+            android:id="@+id/tvSettingsHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="8dp"
+            android:text="App Settings"
+            android:textColor="@color/Mauve"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <!-- NOTIFICATIONS SECTION -->
+        <TextView
+            style="@style/SettingsSectionHeader"
+            android:text="Notifications" />
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/switchBudgetReminders"
+            style="@style/SettingsSwitch"
+            android:text="Budget Reminders"
+            app:subtitle="Get notified when you're nearing your budget limits" />
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/switchBillReminders"
+            style="@style/SettingsSwitch"
+            android:text="Upcoming Bill Alerts"
+            app:subtitle="Receive alerts for upcoming bills" />
+
+        <!-- APPEARANCE SECTION -->
+        <TextView
+            style="@style/SettingsSectionHeader"
+            android:text="Appearance" />
+
+        <TextView
+            android:id="@+id/settingTheme"
+            style="@style/SettingsClickableItem"
+            android:text="App Theme"
+            app:drawableEndCompat="@drawable/outline_arrow_forward"
+            app:subtitle="System Default" />
+
+        <!-- ACCOUNT SECTION -->
+        <TextView
+            style="@style/SettingsSectionHeader"
+            android:text="Account" />
+
+        <TextView
+            android:id="@+id/settingManageAccount"
+            style="@style/SettingsClickableItem"
+            android:text="Manage Account"
+            app:drawableEndCompat="@drawable/outline_arrow_forward"
+            app:subtitle="Update your profile information" />
+
+        <TextView
+            android:id="@+id/settingChangePassword"
+            style="@style/SettingsClickableItem"
+            android:text="Change Password"
+            app:drawableEndCompat="@drawable/outline_arrow_forward" />
+
+        <TextView
+            android:id="@+id/settingLogout"
+            style="@style/SettingsClickableItem"
+            android:text="Logout"
+            android:textColor="?attr/colorError" />
+
+    </LinearLayout>
+
+</ScrollView>

@@ -1,14 +1,15 @@
 package qi.mybudget
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import com.google.firebase.database.IgnoreExtraProperties
 
-@Entity
+@IgnoreExtraProperties
 data class Budget(
-    @PrimaryKey val bid: Int,
-    @ColumnInfo(name = "uid") val uid: Int,
-    @ColumnInfo(name = "budget_name") val expenseName: String,
-    @ColumnInfo(name = "min_amount") val expenseAmount: Double,
-    @ColumnInfo(name = "max_amount") val category: Double
-)
+    val uid: String? = null,
+    val budgetId: String? = null,
+    val categoryName: String? = null, // e.g., "Groceries", "Entertainment"
+    val maxLimit: Double? = null,     // The spending limit
+    val minLimit: Double? = null      // Optional minimum target
+) {
+    // No-argument constructor for Firebase
+    constructor() : this(null, null, null, null, null)
+}

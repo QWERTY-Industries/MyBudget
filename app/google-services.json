@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "236798915350",
+    "project_id": "mybudget-72a5c",
+    "storage_bucket": "mybudget-72a5c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:236798915350:android:f7fe969ff69aee76e19637",
+        "android_client_info": {
+          "package_name": "qi.mybudget"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEGbBuIG7uxaVvxOZaUfb5Y3k1xOkqiwc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

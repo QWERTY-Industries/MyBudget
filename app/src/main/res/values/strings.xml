@@ -31,4 +31,31 @@
     <string name="expenses">Expenses:</string>
     <string name="income">Income:</string>
     <string name="analysis">Analysis</string>
+    <string name="home">Home</string>
+    <string name="add_transaction">Add Transaction</string>
+    <string name="my_budget">My Budget</string>
+    <string name="side_menu">Side Menu</string>
+    <string name="add_category">Add Category</string>
+    <string name="add_budget">Add Budget</string>
+    <string name="add_expense">Add Expense</string>
+    <string name="no_recent_activity">No Recent Activity</string>
+    <string name="add_new_transaction">Add New Transaction</string>
+    <string name="amount_e_g_25_50">Amount (e.g., 25.50)</string>
+    <string name="category">Category</string>
+    <string name="label_new">New</string>
+    <string name="optional_description">Optional Description</string>
+    <string name="transaction_type">Transaction Type</string>
+    <string name="expense">Expense</string>
+    <string name="save_transaction">Save Transaction</string>
+    <string name="cash_balance">Cash Balance</string>
+    <string name="card_balance">Card Balance</string>
+    <string name="savings_balance">Savings Balance</string>
+    <string name="update_wallet">Update Wallet</string>
+    <string name="graph_will_be_here">graph will be here</string>
+    <string name="please_describe_the_issue_in_detail">Please describe the issue in detail...</string>
+    <string name="send_feedback">Send Feedback</string>
+    <string name="topic_e_g_bug_report_feature_request">Topic (e.g., Bug Report, Feature Request)</string>
+    <string name="having_an_issue_or_have_a_suggestion_let_us_know">Having an issue or have a suggestion? Let us know!</string>
+    <string name="help_amp_feedback"><![CDATA[Help & Feedback]]></string>
+
 </resources>

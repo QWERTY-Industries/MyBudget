@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Change root to ConstraintLayout and add the 'app' namespace -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_list"
+    android:padding="16dp"
+    tools:context=".AddTransactionFragment">
+
+    <!-- Back Button -->
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="92dp"
+        android:layout_height="56dp"
+        android:background="@drawable/custom_button_2"
+        android:text="@string/back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Screen Title -->
+    <TextView
+        android:id="@+id/tvTransaction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/racing_sans_one"
+        android:text="@string/add_new_transaction"
+        android:textColor="@color/pastel_pink"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnBack" />
+
+    <!-- Amount Input -->
+    <EditText
+        android:id="@+id/etAmount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/custom_input"
+        android:fontFamily="@font/racing_sans_one"
+        android:hint="@string/amount_e_g_25_50"
+        android:inputType="numberDecimal"
+        android:padding="16dp"
+        android:textColor="@color/pastel_pink"
+        android:textColorHint="@color/pastel_pink_50"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTransaction" />
+
+    <!-- Category Label -->
+    <TextView
+        android:id="@+id/tvCategoryLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/category"
+        android:textColor="@color/pastel_pink"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etAmount" />
+
+    <!-- Category Spinner -->
+    <Spinner
+        android:id="@+id/spinnerCategory"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/custom_input"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        style="@style/Widget.AppCompat.Spinner.Underlined"
+        app:layout_constraintEnd_toStartOf="@+id/btnAddCategory"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvCategoryLabel" />
+
+    <!-- Add New Category Button -->
+    <Button
+        android:id="@+id/btnAddCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="new"
+        android:backgroundTint="@color/Mauve"
+        app:layout_constraintBottom_toBottomOf="@+id/spinnerCategory"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/spinnerCategory" />
+    <!-- Optional Description -->
+    <EditText
+        android:id="@+id/etDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/custom_input"
+        android:fontFamily="@font/racing_sans_one"
+        android:hint="@string/optional_description"
+        android:inputType="textCapSentences"
+        android:padding="16dp"
+        android:textColor="@color/pastel_pink"
+        android:textColorHint="@color/pastel_pink_50"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinnerCategory" />
+
+    <!-- Transaction Type Label -->
+    <TextView
+        android:id="@+id/tvTransactionTypeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/transaction_type"
+        android:textColor="@color/pastel_pink"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etDescription" />
+
+    <!-- RadioGroup for Income/Expense -->
+    <RadioGroup
+        android:id="@+id/rgTransactionType"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTransactionTypeLabel">
+
+        <RadioButton
+            android:id="@+id/rbExpense"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/pastel_pink"
+            android:checked="true"
+            android:text="@string/expense"
+            android:textColor="@color/pastel_pink" />
+
+        <RadioButton
+            android:id="@+id/rbIncome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:buttonTint="@color/pastel_pink"
+            android:text="@string/income"
+            android:textColor="@color/pastel_pink" />
+    </RadioGroup>
+
+    <!-- NEW: Label for Payment Source -->
+    <TextView
+android:id="@+id/tvPaymentSourceLabel"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_marginTop="24dp"
+android:text="From / To"
+android:textColor="@color/pastel_pink"
+android:textSize="16sp"
+android:textStyle="bold"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toBottomOf="@id/rgTransactionType" />
+
+    <!-- NEW: RadioGroup for Wallet Source (Cash/Card/Savings) -->
+<RadioGroup
+android:id="@+id/rgPaymentSource"
+android:layout_width="0dp"
+android:layout_height="wrap_content"
+android:layout_marginTop="8dp"
+android:orientation="horizontal"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toBottomOf="@id/tvPaymentSourceLabel">
+
+<RadioButton
+    android:id="@+id/rbSourceCash"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:buttonTint="@color/pastel_pink"
+    android:checked="true"
+    android:text="Cash"
+    android:textColor="@color/pastel_pink" />
+
+<RadioButton
+    android:id="@+id/rbSourceCard"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:buttonTint="@color/pastel_pink"
+    android:text="Card"
+    android:textColor="@color/pastel_pink" />
+
+<RadioButton
+    android:id="@+id/rbSourceSavings"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:buttonTint="@color/pastel_pink"
+    android:text="Savings"
+    android:textColor="@color/pastel_pink" />
+</RadioGroup>
+
+    <!-- Now, we need to update the top constraint of the Save Button -->
+    <!-- Save Button -->
+    <Button
+        android:id="@+id/btnSaveTransaction"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/custom_button_2"
+        android:text="@string/save_transaction"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rgPaymentSource" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

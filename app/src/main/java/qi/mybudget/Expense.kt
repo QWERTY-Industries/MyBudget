@@ -1,14 +1,9 @@
 package qi.mybudget
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-
-@Entity
 data class Expense(
-    @PrimaryKey val eid: Int,
-    @ColumnInfo(name = "uid") val uid: Int,
-    @ColumnInfo(name = "cid") val cid: Int,
-    @ColumnInfo(name = "expense_name") val expenseName: String,
-    @ColumnInfo(name = "expense_amount") val expenseAmount: Double?
+    val eid: Int = 0,
+    val uid: Int = 0,
+    val cid: Int = 0,
+    val expenseName: String = "",
+    val expenseAmount: Double = 0.0
 )

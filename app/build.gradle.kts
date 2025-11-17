@@ -43,67 +43,55 @@ android {
 
 dependencies {
 
+    // Keep your existing core dependencies
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    implementation(libs.play.services.maps)
-    implementation(libs.androidx.recyclerview)
-    implementation(libs.firebase.auth)
-    implementation(libs.androidx.credentials)
-    implementation(libs.androidx.credentials.play.services.auth)
-    implementation(libs.googleid)
-    implementation(libs.firebase.database)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    // Coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2") // Use the latest version
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2")
 
-    // Lifecycle (for lifecycleScope)
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2") // Use the latest version
+    // --- FIREBASE DEPENDENCIES (CLEANED UP) ---
+    // 1. Import the Firebase BoM ONCE. Use the latest version.
+    implementation(platform("com.google.firebase:firebase-bom:33.1.1")) // Using a recent stable version
 
-    // Jetpack Navigation
+    // 2. Add individual Firebase products WITHOUT versions. The BoM handles them.
+    // Use the non-alias versions since you had them already.
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-database")
+
+    // --- NAVIGATION ---
     val nav_version = "2.7.7"
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
 
-    val room_version = "2.8.1"
+    // --- ROOM DATABASE (Updated to Stable Version) ---
+    val room_version = "2.6.1" // Using the latest STABLE version
+   // implementation("androidx.room:room-runtime:$room_version")
+    //implementation("androidx.room:room-ktx:$room_version") // For coroutines support
+    //ksp("androidx.room:room-compiler:$room_version")
+    // You can remove other optional room dependencies if you are not using them (rxjava, guava, etc.)
+    // testImplementation("androidx.room:room-testing:$room_version")
 
-    implementation("androidx.room:room-runtime:$room_version")
+    // --- COROUTINES (Updated to Stable Version) ---
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
 
-    // If this project uses any Kotlin source, use Kotlin Symbol Processing (KSP)
-    // See Add the KSP plugin to your project
-    ksp("androidx.room:room-compiler:$room_version")
+    // --- LIFECYCLE ---
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.3") // Updated to latest stable
 
-    // If this project only uses Java source, use the Java annotationProcessor
-    // No additional plugins are necessary
-    annotationProcessor("androidx.room:room-compiler:$room_version")
+    // --- Other Dependencies ---
+    implementation(libs.play.services.maps)
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.googleid)
 
-    // optional - Kotlin Extensions and Coroutines support for Room
-    implementation("androidx.room:room-ktx:$room_version")
-
-    // optional - RxJava2 support for Room
-    implementation("androidx.room:room-rxjava2:$room_version")
-
-    // optional - RxJava3 support for Room
-    implementation("androidx.room:room-rxjava3:$room_version")
-
-    // optional - Guava support for Room, including Optional and ListenableFuture
-    implementation("androidx.room:room-guava:$room_version")
-
-    // optional - Test helpers
-    testImplementation("androidx.room:room-testing:$room_version")
-
-    // optional - Paging 3 Integration
-    implementation("androidx.room:room-paging:$room_version")
-
-    //graphs
+    // Graphs
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
 
-    implementation(platform("com.google.firebase:firebase-bom:34.5.0"))
-
-    implementation("com.google.firebase:firebase-analytics")
+    // Testing
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 }

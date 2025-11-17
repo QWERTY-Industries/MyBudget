@@ -1,12 +1,17 @@
 package qi.mybudget
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import com.google.firebase.database.IgnoreExtraProperties
 
-@Entity
+
+/**
+ * Represents a single category, either default or user-created.
+ */
+@IgnoreExtraProperties
 data class Category(
-    @PrimaryKey(autoGenerate = true) val cid: Int,
-    @ColumnInfo(name = "uid") val uid: Int,
-    @ColumnInfo(name = "category_name") val categoryName: String
-)
+    val categoryId: String? = null, // Unique ID from Firebase
+    val name: String? = null,
+    val userId: String? = null // To know who created it
+) {
+    // No-argument constructor for Firebase
+    constructor() : this(null, null, null)
+}

@@ -38,15 +38,15 @@ class CreateExpense : Fragment() {
 //        val expenses: List<Expense> = budgetDao.findExpensesByUserId();
 
         //Q Create
-        binding.btnCreateExpense.setOnClickListener {
-            findNavController().navigate(R.id.action_createExpense_to_homeFrag)
-//            expenseDao.createExpense(Expense())
-        }
+//        binding.btnCreateExpense.setOnClickListener {
+//            findNavController().navigate(R.id.action_createExpense_to_homeFrag)
+////            expenseDao.createExpense(Expense())
+//        }
 
         //Q Category
-        binding.btnBack.setOnClickListener {
-            findNavController().navigate(R.id.action_createExpense_to_homeFrag)
-        }
+//        binding.btnBack.setOnClickListener {
+//            findNavController().navigate(R.id.action_createExpense_to_homeFrag)
+//        }
 
         // Note: Your "Side Menu" button with the id "button" is not yet used.
         // You can add a listener for it here if you need to.

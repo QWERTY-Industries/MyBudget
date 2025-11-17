@@ -1,15 +1,19 @@
 package qi.mybudget
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import com.google.firebase.database.IgnoreExtraProperties
 
-@Entity
+/**
+ * This data class represents a User for the Firebase Realtime Database.
+ * The @IgnoreExtraProperties annotation is crucial for Firebase.
+ */
+@IgnoreExtraProperties
 data class User(
-    @PrimaryKey val uid: Int,
-    @ColumnInfo(name = "first_name") val firstName: String?,
-    @ColumnInfo(name = "last_name") val lastName: String?,
-    @ColumnInfo(name = "username") val username: String,
-    @ColumnInfo(name = "email") val email: String?,
-    @ColumnInfo(name = "password") val password: String
-)
+    val uid: String? = null,
+    val firstName: String? = null,
+    val lastName: String? = null,
+    val username: String? = null,
+    val email: String? = null
+) {
+    // A no-argument constructor is required by Firebase for deserializing data.
+    constructor() : this(null, null, null, null, null)
+}
