@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyBudget</string>
+    <string name="app_name">My Budget</string>
     <string name="login">Login</string>
     <string name="sign_up">Sign Up</string>
     <string name="name">Name</string>
@@ -58,4 +58,6 @@
     <string name="having_an_issue_or_have_a_suggestion_let_us_know">Having an issue or have a suggestion? Let us know!</string>
     <string name="help_amp_feedback"><![CDATA[Help & Feedback]]></string>
 
+
+    <!-- <string name="app_name">My Budget App</string> -->
 </resources>
