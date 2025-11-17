@@ -5,26 +5,32 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-//import androidx.compose.ui.tooling.data.position
-//import androidx.core.text.color
+import androidx.core.content.ContextCompat
+import androidx.core.text.color
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis
-// Corrected MPAndroidChart imports
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.ValueFormatter
-// Corrected standard Java/Android imports
 import qi.mybudget.databinding.FragmentAnalysisBinding
+import java.text.NumberFormat
 import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
-import java.util.concurrent.TimeUnit
+import java.util.*
 
 class AnalysisFrag : Fragment() {
 
     private var _binding: FragmentAnalysisBinding? = null
     private val binding get() = _binding!!
+
+    // Get the shared ViewModel instance that holds all our data
+    private val viewModel: AnalysisViewModel by activityViewModels()
+
+    // Currency formatter for Rands
+    private val currencyFormatter = NumberFormat.getCurrencyInstance(Locale("en", "ZA"))
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,83 +42,128 @@ class AnalysisFrag : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val expenditureData = getSampleExpenditureData()
-        setupLineChart(expenditureData)
-    }
 
-    private fun setupLineChart(data: List<Pair<Long, Float>>) {
-        val entries = ArrayList<Entry>()
-        // The 'forEach' loop is a standard Kotlin function and doesn't need a special import.
-        data.forEach { pair ->
-            // 'toFloat()' and 'pair.second' are also standard and do not need imports.
-            entries.add(Entry(pair.first.toFloat(), pair.second))
+        // The RecyclerView is not needed for the graph, so we can hide it for now
+       // binding.rvAnalysisTable.visibility = View.GONE
+
+        setupChart()
+
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
         }
 
-        val dataSet = LineDataSet(entries, "Expenditure")
+        observeViewModelData()
+    }
 
-        dataSet.color = Color.BLACK
-        dataSet.valueTextColor = Color.BLACK
-        dataSet.setCircleColor(Color.BLACK)
-        dataSet.setDrawValues(false)
-        dataSet.lineWidth = 2.5f
+    private fun observeViewModelData() {
+        // --- Observe Total Income ---
+        viewModel.totalIncome.observe(viewLifecycleOwner) { income ->
+            binding.tvTotalIncome.text = "Income:\n${currencyFormatter.format(income ?: 0.0)}"
+        }
+
+        // --- Observe Total Expenses ---
+        viewModel.totalExpenses.observe(viewLifecycleOwner) { expenses ->
+            binding.tvTotalExpense.text = "Expenses:\n${currencyFormatter.format(expenses ?: 0.0)}"
+        }
+
+        // --- Observe Combined Totals for the "Total" TextView ---
+        viewModel.totalIncome.observe(viewLifecycleOwner) { updateTotalAmount() }
+        viewModel.totalExpenses.observe(viewLifecycleOwner) { updateTotalAmount() }
+
+
+        // --- Observe the full transaction list to update the chart ---
+        viewModel.transactions.observe(viewLifecycleOwner) { transactions ->
+            if (transactions.isNotEmpty()) {
+                updateChartData(transactions)
+            }
+        }
+    }
+
+    private fun updateTotalAmount() {
+        val income = viewModel.totalIncome.value ?: 0.0
+        val expenses = viewModel.totalExpenses.value ?: 0.0
+        val total = income - expenses
+        binding.tvTotalAmount.text = "Total:\n${currencyFormatter.format(total)}"
+    }
+
+    private fun setupChart() {
+        binding.lineChart.apply {
+            description.isEnabled = false
+            legend.isEnabled = true
+            legend.textColor = Color.WHITE
+
+            // Style the X-axis (bottom)
+            xAxis.position = XAxis.XAxisPosition.BOTTOM
+            xAxis.textColor = Color.WHITE
+            xAxis.setDrawGridLines(false)
+            xAxis.valueFormatter = DateAxisValueFormatter() // Use a custom formatter for dates
+
+            // Style the Y-axis (left)
+            axisLeft.textColor = Color.WHITE
+            axisLeft.setDrawGridLines(true)
+            axisLeft.gridColor = Color.argb(30, 255, 255, 255) // Faint white grid lines
+
+            // Disable the right Y-axis
+            axisRight.isEnabled = false
+        }
+    }
+
+    private fun updateChartData(transactions: List<Transaction>) {
+        // Group transactions by day and sum the amounts
+        val dailyTotals = transactions
+            .sortedBy { it.date }
+            .groupBy {
+                // Normalize date to the start of the day
+                val cal = Calendar.getInstance()
+                cal.timeInMillis = it.date ?: 0
+                cal.set(Calendar.HOUR_OF_DAY, 0)
+                cal.set(Calendar.MINUTE, 0)
+                cal.set(Calendar.SECOND, 0)
+                cal.set(Calendar.MILLISECOND, 0)
+                cal.timeInMillis
+            }
+            .mapValues { entry ->
+                entry.value.sumOf {
+                    if (it.transactionType == "Expense") -(it.amount ?: 0.0) else (it.amount ?: 0.0)
+                }
+            }
+
+        // Create a running balance
+        var runningBalance = 0.0
+        val entries = dailyTotals.map { (date, totalChange) ->
+            runningBalance += totalChange
+            // The X value is the date (as a float), Y is the running balance
+            Entry(date.toFloat(), runningBalance.toFloat())
+        }
+
+        if (entries.isEmpty()) {
+            binding.lineChart.clear()
+            return
+        }
+
+        val dataSet = LineDataSet(entries, "Account Balance Over Time")
+        dataSet.color = ContextCompat.getColor(requireContext(), R.color.purple_chart)
+        dataSet.valueTextColor = Color.WHITE
+        dataSet.setCircleColor(Color.WHITE)
+        dataSet.circleHoleColor = ContextCompat.getColor(requireContext(), R.color.purple_chart)
+        dataSet.lineWidth = 2f
         dataSet.circleRadius = 4f
 
         val lineData = LineData(dataSet)
         binding.lineChart.data = lineData
-
-        binding.lineChart.description.isEnabled = false
-        binding.lineChart.legend.textColor = Color.DKGRAY
-
-        val xAxis = binding.lineChart.xAxis
-        xAxis.textColor = Color.DKGRAY
-        xAxis.position = XAxis.XAxisPosition.BOTTOM
-        xAxis.granularity = TimeUnit.DAYS.toMillis(1).toFloat()
-
-        xAxis.valueFormatter = object : ValueFormatter() {
-            private val format = SimpleDateFormat("MMM dd", Locale.getDefault())
-
-            // The return type should be the standard 'String', not 'kotlin.text.String'
-            override fun getFormattedValue(value: Float): String {
-                // 'toLong()' is a standard function.
-                return format.format(Date(value.toLong()))
-            }
-        }
-
-        binding.lineChart.axisLeft.textColor = Color.DKGRAY
-        binding.lineChart.axisRight.isEnabled = false
-
-        binding.lineChart.invalidate()
-    }
-
-    // Use the standard 'Long' and 'Float' types.
-    //placeholder for the users input. replace this with actual user inputs
-    private fun getSampleExpenditureData(): List<Pair<Long, Float>> {
-        val dayInMillis = TimeUnit.DAYS.toMillis(1)
-        val now = System.currentTimeMillis()
-        return listOf(
-            Pair(now - dayInMillis * 6, 50f),
-            Pair(now - dayInMillis * 5, 75f),
-            Pair(now - dayInMillis * 4, 60f),
-            Pair(now - dayInMillis * 3, 120f),
-            Pair(now - dayInMillis * 2, 90f),
-            Pair(now - dayInMillis * 1, 150f),
-            Pair(now, 110f)
-        )
+        binding.lineChart.invalidate() // Refresh the chart
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+}
 
-    companion object {
-        // Use the standard 'String' type here.
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            AnalysisFrag().apply {
-                arguments = Bundle().apply {
-                    // Left this in case you decide to use it later
-                }
-            }
+// Helper class to format the X-axis labels from milliseconds to a "dd/MM" date format
+class DateAxisValueFormatter : ValueFormatter() {
+    private val sdf = SimpleDateFormat("dd/MM", Locale.getDefault())
+    override fun getAxisLabel(value: Float, axis: com.github.mikephil.charting.components.AxisBase?): String {
+        return sdf.format(Date(value.toLong()))
     }
 }

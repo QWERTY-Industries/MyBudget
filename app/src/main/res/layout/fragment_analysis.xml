@@ -7,119 +7,110 @@
     android:background="@android:color/transparent"
     tools:context=".AnalysisFrag">
 
+    <!-- Header: Analysis Title and Back Button -->
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/racing_sans_one"
         android:text="@string/analysis"
         android:textAlignment="center"
         android:textColor="@color/pastel_pink"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.549"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.036" />
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="73dp"
+        android:layout_height="72dp"
+        android:background="@drawable/custom_button_2"
+        android:text="@string/back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"/>
+
+    <!-- Summary Boxes: Aligned horizontally above the chart -->
     <TextView
         android:id="@+id/tvTotalIncome"
-        android:layout_width="150dp"
+        android:layout_width="0dp"
         android:layout_height="75dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/custom_input"
         android:backgroundTint="@color/Fandango_50"
         android:fontFamily="@font/racing_sans_one"
+        android:gravity="center"
+        android:padding="8dp"
         android:text="@string/income"
         android:textAlignment="center"
         android:textColor="@color/pastel_pink"
-        app:layout_constraintBottom_toTopOf="@+id/tvTotalExpense"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.888" />
+        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        android:layout_marginTop="32dp"/>
 
     <TextView
         android:id="@+id/tvTotalExpense"
-        android:layout_width="150dp"
+        android:layout_width="0dp"
         android:layout_height="75dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/custom_input"
         android:backgroundTint="@color/Fandango_50"
         android:fontFamily="@font/racing_sans_one"
+        android:gravity="center"
+        android:padding="8dp"
         android:text="@string/expenses"
         android:textAlignment="center"
         android:textColor="@color/pastel_pink"
-        app:layout_constraintBottom_toTopOf="@+id/tvTotalAmount"
+        app:layout_constraintStart_toStartOf="@+id/guideline_vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
-        app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.995" />
+        app:layout_constraintTop_toTopOf="@+id/tvTotalIncome" />
 
     <TextView
         android:id="@+id/tvTotalAmount"
-        android:layout_width="150dp"
+        android:layout_width="0dp"
         android:layout_height="75dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="84dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/custom_input"
         android:backgroundTint="@color/Fandango_50"
         android:fontFamily="@font/racing_sans_one"
+        android:gravity="center"
+        android:padding="8dp"
         android:text="@string/total"
         android:textAlignment="center"
         android:textColor="@color/pastel_pink"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.384"
-        app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.54" />
+        app:layout_constraintEnd_toEndOf="@+id/tvTotalExpense"
+        app:layout_constraintStart_toStartOf="@+id/tvTotalIncome"
+        app:layout_constraintTop_toBottomOf="@+id/tvTotalIncome" />
 
-    <Button
-        android:id="@id/btnBack"
-        android:layout_width="73dp"
-        android:layout_height="72dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/custom_button_2"
-        android:text="@string/back"
-        app:layout_constraintBottom_toTopOf="@+id/tvTotalIncome"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+    <!-- A guideline to help split the screen 50/50 -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvAnalysisTable"
-        android:layout_width="409dp"
-        android:layout_height="314dp"
-        android:background="@drawable/custom_input"
-        android:backgroundTint="@color/pastel_pink_50"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
+    <!-- The LineChart now takes up the bottom half of the screen -->
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/lineChart"
         android:layout_width="0dp"
-        android:layout_height="250dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="graph will be here"
-        app:layout_constraintBottom_toBottomOf="@+id/tvTotalAmount"
-        app:layout_constraintEnd_toStartOf="@+id/tvTotalIncome"
+        android:layout_height="0dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tvTotalIncome" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTotalAmount" />
 
+    <!-- The RecyclerView has been removed -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

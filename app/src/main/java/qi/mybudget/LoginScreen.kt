@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.room.Room
+//import androidx.room.Room
 import com.google.firebase.auth.FirebaseAuth
 import qi.mybudget.databinding.ActivityLoginScreenBinding // Import the binding class
 
@@ -27,11 +27,11 @@ class LoginScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //Q Create Database Instance
-        val db = Room.databaseBuilder(
-            applicationContext,
-            AppDatabase::class.java, "database-new"
-        ).allowMainThreadQueries().build()
+//        //Q Create Database Instance
+//        val db = Room.databaseBuilder(
+//            applicationContext,
+//            AppDatabase::class.java, "database-new"
+//        ).allowMainThreadQueries().build()
 
         firebaseAuth = FirebaseAuth.getInstance()
 

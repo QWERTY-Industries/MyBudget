@@ -1,24 +1,27 @@
 package qi.mybudget
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import qi.mybudget.databinding.FragmentCreateBudgetBinding
-import qi.mybudget.databinding.FragmentCreateExpenseBinding
 
-class CreateBudget : Fragment() {
-    // Declare binding variables
+class CreateBudgetFrag : Fragment() {
+
     private var _binding: FragmentCreateBudgetBinding? = null
     private val binding get() = _binding!!
+
+    // Get the shared ViewModel
+    private val viewModel: AnalysisViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout using View Binding
+    ): View {
         _binding = FragmentCreateBudgetBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -26,35 +29,52 @@ class CreateBudget : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //Q Commented code is database not creating table and throw compile error
+        // Make sure the input types are correct for numbers
+        binding.etMinLimit.inputType = android.text.InputType.TYPE_CLASS_NUMBER or android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL
+        binding.etMaxLimit.inputType = android.text.InputType.TYPE_CLASS_NUMBER or android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL
 
-//        val db = Room.databaseBuilder(
-//            requireContext().applicationContext,
-//            AppDatabase::class.java, "database-new"
-//        ).allowMainThreadQueries().build()
-//
-//        val budgetDao = db.budgetDao();
-//        val budgets: List<Budget> = budgetDao.findCategoriesByUserId();
-
-        //Q Create
         binding.btnCreateBudget.setOnClickListener {
-            findNavController().navigate(R.id.action_createBudget_to_homeFrag)
-//            budgetDao.createBudget(Budget())
+            saveBudget()
         }
 
-        //Q Category
         binding.btnBack.setOnClickListener {
-            findNavController().navigate(R.id.action_createBudget_to_homeFrag)
+            findNavController().popBackStack()
+        }
+    }
+
+    private fun saveBudget() {
+        val categoryName = binding.etName.text.toString().trim()
+        val minLimitStr = binding.etMinLimit.text.toString()
+        val maxLimitStr = binding.etMaxLimit.text.toString()
+
+        // --- Input Validation ---
+        if (categoryName.isEmpty()) {
+            Toast.makeText(context, "Budget Name (Category) cannot be empty.", Toast.LENGTH_SHORT).show()
+            return
         }
 
-        // Note: Your "Side Menu" button with the id "button" is not yet used.
-        // You can add a listener for it here if you need to.
-        // binding.button.setOnClickListener { ... }
+        // Convert strings to nullable Doubles. Invalid numbers become null.
+        val minLimit = minLimitStr.toDoubleOrNull()
+        val maxLimit = maxLimitStr.toDoubleOrNull()
+
+        if (minLimitStr.isNotEmpty() && minLimit == null) {
+            Toast.makeText(context, "Please enter a valid number for Min Limit.", Toast.LENGTH_SHORT).show()
+            return
+        }
+        if (maxLimitStr.isNotEmpty() && maxLimit == null) {
+            Toast.makeText(context, "Please enter a valid number for Max Limit.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        // Call the ViewModel to do the heavy lifting
+        viewModel.createBudget(categoryName, minLimit, maxLimit)
+
+        Toast.makeText(context, "Budget for '$categoryName' created!", Toast.LENGTH_SHORT).show()
+        findNavController().popBackStack()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        // Clean up the binding object when the view is destroyed to avoid memory leaks
         _binding = null
     }
 }

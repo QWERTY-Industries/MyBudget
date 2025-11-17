@@ -4,58 +4,98 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.room.Room
 import com.google.firebase.auth.FirebaseAuth
-import qi.mybudget.databinding.ActivitySignUpscreenBinding // Import the binding class
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
+import qi.mybudget.databinding.ActivitySignUpscreenBinding
 
 class SignUPScreen : AppCompatActivity() {
 
-    // Declare the binding variable for your layout
     private lateinit var binding: ActivitySignUpscreenBinding
-    private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var auth: FirebaseAuth
+    private lateinit var database: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val db = Room.databaseBuilder(
-            applicationContext,
-            AppDatabase::class.java, "database-new"
-        ).allowMainThreadQueries().build()
-
-        firebaseAuth = FirebaseAuth.getInstance()
-
-//        val userDao = db.userDao()
-//        val users: List<User> = userDao.getAll()
-
-        // Set up View Binding
         binding = ActivitySignUpscreenBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnCreateAccount.setOnClickListener {
-            Toast.makeText(this, "Email or password is empty!", Toast.LENGTH_SHORT).show()
-            val email = binding.etEmail.text.toString()
-            val password = binding.etPassword.text.toString()
+        // Initialize Firebase Auth
+        auth = Firebase.auth
 
-            if (email.isNotEmpty() && password.isNotEmpty())
-            {
-                firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
-                    if (it.isSuccessful)
-                    {
-                        val intent = Intent(this, LoginScreen::class.java)
-                        startActivity(intent)
-                        finish()
+        // Initialize Firebase Realtime Database reference
+        // We'll store user profiles under a "users" node
+        database = FirebaseDatabase.getInstance().getReference("users")
+
+        binding.btnCreateAccount.setOnClickListener {
+            createAccount()
+        }
+    }
+
+    private fun createAccount() {
+        val firstName = binding.etFirstName.text.toString().trim()
+        val lastName = binding.etLastName.text.toString().trim()
+        val username = binding.etUsername.text.toString().trim()
+        val email = binding.etEmail.text.toString().trim()
+        val password = binding.etPassword.text.toString().trim()
+
+        // --- Input Validation ---
+        if (firstName.isEmpty() || lastName.isEmpty() || username.isEmpty() || email.isEmpty() || password.isEmpty()) {
+            Toast.makeText(this, "Please fill in all fields.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (password.length < 6) {
+            Toast.makeText(this, "Password must be at least 6 characters long.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        // --- Step 1: Create the user in Firebase Authentication ---
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign up success, now save the extra user info to the database
+                    val firebaseUser = auth.currentUser
+                    val uid = firebaseUser?.uid
+
+                    if (uid != null) {
+                        saveUserInfoToDatabase(uid, firstName, lastName, username, email)
+                    } else {
+                        // This case is rare, but good to handle
+                        Toast.makeText(baseContext, "Account creation failed, could not get user ID.", Toast.LENGTH_SHORT).show()
                     }
-                    else
-                    {
-                        Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
-                    }
+                } else {
+                    // If sign up fails, display a message to the user.
+                    Toast.makeText(baseContext, "Authentication failed: ${task.exception?.message}", Toast.LENGTH_LONG).show()
                 }
             }
-            else
-            {
-                Toast.makeText(this, "Email or password is empty!", Toast.LENGTH_SHORT).show()
+    }
+
+    // --- Step 2: Save the additional user information to Firebase Realtime Database ---
+    private fun saveUserInfoToDatabase(uid: String, firstName: String, lastName: String, username: String, email: String) {
+        val user = User(uid, firstName, lastName, username, email)
+
+        // The user's data will be saved under the path: /users/{uid}
+        database.child(uid).setValue(user)
+            .addOnSuccessListener {
+                // Data saved successfully!
+                Toast.makeText(this, "Account created successfully!", Toast.LENGTH_SHORT).show()
+
+                // Navigate to the main screen of the app (e.g., MainActivity or LoginScreen)
+                // You might want to navigate to a login screen or directly into the app
+                val intent = Intent(this, MainActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+                finish() // Prevents user from going back to the sign-up screen
             }
-        }
+            .addOnFailureListener {
+                // Handle the failure case
+                Toast.makeText(this, "Failed to save user details: ${it.message}", Toast.LENGTH_LONG).show()
+            }
+    }
+}
 
         //Q Room db stuff vvv
 
@@ -105,5 +145,5 @@ class SignUPScreen : AppCompatActivity() {
 //            // can't press the back button to return to it.
 //            finish()
 //        }
-    }
-}
+   // }//
+//}

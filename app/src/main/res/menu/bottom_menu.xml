@@ -1,17 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-<item
-    android:id="@+id/home"
-    android:title="Home"
-    android:icon="@drawable/outline_deployed_code_24"/>
-    <item
-        android:id="@+id/fab"
-        android:title=""
-        android:enabled="true"/>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <!--
+    Item ID should match the ID of the destination fragment in your nav_graph.xml.
+    I am assuming your "Home" screen is the OverviewFrag.
+    -->
     <item
-        android:id="@+id/Account"
-        android:title="Account"
-        android:icon="@drawable/account_circle_pink"/>
+        android:id="@+id/overviewFrag"
+        android:title="@string/overview"
+        android:icon="@drawable/outline_dashboard_24"
+        app:showAsAction="ifRoom" />
+
+    <!--
+    This is a placeholder to create space for the FAB.
+    It has no ID and is not enabled, so it cannot be clicked.
+    This is better than giving it a fake ID.
+    -->
+    <item
+        android:id="@+id/placeholder"
+        android:title=""
+        android:enabled="false"
+        app:showAsAction="ifRoom" />
+
+    <!--
+    Assuming your "Account" or "Analysis" screen is the AnalysisFrag.
+    Update the ID and icon to match your desired destination.
+    -->
+    <item
+        android:id="@+id/analysisFrag"
+        android:title="@string/analysis"
+        android:icon="@drawable/outline_bubble_chart_24"
+        app:showAsAction="ifRoom" />
 
 </menu>

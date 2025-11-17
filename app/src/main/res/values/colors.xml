@@ -24,4 +24,8 @@
     <color name="Rose_Pink_25">#40FB74B4</color>
     <color name="Rose_Pink_50">#80FB74B4</color>
     <color name="Mauve">#e0aaff</color>
+    <color name="red">#F44336</color>
+    <color name="green">#4CAF50</color>
+<!-- In res/values/colors.xml -->
+    <color name="purple_chart">#9C27B0</color>
 </resources>
